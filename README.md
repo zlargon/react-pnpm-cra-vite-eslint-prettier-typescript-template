@@ -5,7 +5,7 @@ a template for building a react app
 ## Features
 
 - PNPM
-- Create React App
+- Vite
 - Typescript
 - State Manager
   - use-context-selector
@@ -15,7 +15,7 @@ a template for building a react app
 - Git Hooks
   - pre-commit: check format, lint, and types
   - pre-push: build and coverage
-- Test
+- Test (Create React App)
   - Jest
   - React Testing Library
   - Code Coverage

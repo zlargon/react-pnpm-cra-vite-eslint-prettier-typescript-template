@@ -8,15 +8,18 @@
   },
   "scripts": {
     "prepare": "ghooks/install.sh",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
     "format": "prettier --write src",
     "lint": "pnpm check:lint && pnpm check:types",
     "test": "react-scripts test",
     "coverage": "react-scripts test --coverage --watchAll=false",
     "check:format": "prettier --check src",
     "check:lint": "eslint src --ext js,jsx,ts,tsx",
-    "check:types": "tsc -p . --noEmit"
+    "check:types": "tsc -p . --noEmit",
+    "cra:start": "react-scripts start",
+    "cra:build": "react-scripts build"
   },
   "dependencies": {
     "immer": "9.0.16",
