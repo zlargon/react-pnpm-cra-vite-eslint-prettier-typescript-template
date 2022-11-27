@@ -8,6 +8,7 @@ specifiers:
   '@types/node': 16.18.3
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
+  '@types/testing-library__jest-dom': 5.14.5
   react: 18.2.0
   react-dom: 18.2.0
   react-scripts: 5.0.1
@@ -27,6 +28,7 @@ devDependencies:
   '@types/node': 16.18.3
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
+  '@types/testing-library__jest-dom': 5.14.5
   react-scripts: 5.0.1_eetduzquwu67aqoq5644t6dxzu
   typescript: 4.9.3
 
