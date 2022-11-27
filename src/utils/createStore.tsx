@@ -7,10 +7,6 @@ export const debugStore = (enable: boolean): void => {
   DEBUG_STORE = enable;
 };
 
-interface ProviderProps {
-  children: React.ReactNode;
-}
-
 /**
  *
  * @param initialState        - initial state of the store
@@ -19,7 +15,7 @@ interface ProviderProps {
  *          store.useDispatch - The react hook to get the dispatch function
  */
 export function createStore<IState>(initialState: IState): {
-  Provider: React.FC<ProviderProps>;
+  Provider: React.FC<{ children: React.ReactNode }>;
   useSelector: <ISelected>(selector: (state: IState) => ISelected) => ISelected;
   useDispatch: () => Dispatch<(state: IState) => void>; // Dispatch<IAction>
 } {
@@ -51,7 +47,7 @@ export function createStore<IState>(initialState: IState): {
   const DispatchContext = createContext<Dispatch<IAction>>(() => null);
 
   // Provider Component
-  const Provider: React.FC<ProviderProps> = ({ children }) => {
+  const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     return (
       <StateContext.Provider value={state}>
