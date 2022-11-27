@@ -2,6 +2,10 @@
   "name": "react-app-starter",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7"
+  },
   "scripts": {
     "prepare": "ghooks/install.sh",
     "start": "react-scripts start",
