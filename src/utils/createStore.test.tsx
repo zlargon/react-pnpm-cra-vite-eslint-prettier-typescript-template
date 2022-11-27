@@ -2,12 +2,7 @@ import type { Dispatch } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import User from '@testing-library/user-event';
 import { createStore, debugStore } from './createStore';
-
-function delay(ms: number): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
+import { delay } from './delay';
 
 // mock console
 /* eslint-disable no-console */
