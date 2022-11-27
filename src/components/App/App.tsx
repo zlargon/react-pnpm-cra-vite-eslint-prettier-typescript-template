@@ -35,7 +35,11 @@ function App() {
 
 function Counter() {
   const counter = Store.useSelector((s) => s.counter);
-  return <div>Counter: {counter}</div>;
+  return (
+    <div>
+      Counter: <span data-testid="counter">{counter}</span>
+    </div>
+  );
 }
 
 function Buttons() {
@@ -43,16 +47,36 @@ function Buttons() {
   return (
     <>
       {/* 1. action without parameter */}
-      <button onClick={() => dispatch(user_click_increment_button)}>+1</button>
+      <button
+        data-testid="increment-btn-1" //
+        onClick={() => dispatch(user_click_increment_button)}
+      >
+        +1
+      </button>
 
       {/* 2. action with parameter */}
-      <button onClick={() => dispatch(user_click_increment_button_with_number(2))}>+2</button>
+      <button
+        data-testid="increment-btn-2"
+        onClick={() => dispatch(user_click_increment_button_with_number(2))}
+      >
+        +2
+      </button>
 
       {/* 3. async action without parameter */}
-      <button onClick={() => user_click_delay_decrement_button(dispatch)}>-1</button>
+      <button
+        data-testid="decrement-btn-1"
+        onClick={() => user_click_delay_decrement_button(dispatch)}
+      >
+        -1
+      </button>
 
       {/* 4. async action with parameter */}
-      <button onClick={() => user_click_delay_decrement_button_with_number(3)(dispatch)}>-3</button>
+      <button
+        data-testid="decrement-btn-2"
+        onClick={() => user_click_delay_decrement_button_with_number(3)(dispatch)}
+      >
+        -3
+      </button>
     </>
   );
 }
