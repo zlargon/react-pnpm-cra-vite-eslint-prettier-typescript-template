@@ -1,0 +1,1 @@
+export { getDefaultCounter } from './getDefaultCounter';
