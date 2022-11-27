@@ -9,6 +9,7 @@ specifiers:
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
   '@types/testing-library__jest-dom': 5.14.5
+  prettier: 2.8.0
   react: 18.2.0
   react-dom: 18.2.0
   react-scripts: 5.0.1
@@ -29,6 +30,7 @@ devDependencies:
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
   '@types/testing-library__jest-dom': 5.14.5
+  prettier: 2.8.0
   react-scripts: 5.0.1_eetduzquwu67aqoq5644t6dxzu
   typescript: 4.9.3
 
@@ -8054,6 +8056,12 @@ packages:
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: true
+
+  /prettier/2.8.0:
+    resolution: {integrity: sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /pretty-bytes/5.6.0:
