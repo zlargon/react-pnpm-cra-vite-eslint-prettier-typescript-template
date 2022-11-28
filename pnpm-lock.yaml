@@ -10,6 +10,7 @@ specifiers:
   '@types/react-dom': 18.0.9
   '@types/testing-library__jest-dom': 5.14.5
   '@vitejs/plugin-react': 2.2.0
+  eslint-config-prettier: 8.5.0
   immer: 9.0.16
   prettier: 2.8.0
   react: 18.2.0
@@ -37,6 +38,7 @@ devDependencies:
   '@types/react-dom': 18.0.9
   '@types/testing-library__jest-dom': 5.14.5
   '@vitejs/plugin-react': 2.2.0_vite@3.2.4
+  eslint-config-prettier: 8.5.0
   prettier: 2.8.0
   react-scripts: 5.0.1_vrhrsyowp6vs4524xuw7v67ume
   sass: 1.56.1
@@ -4725,6 +4727,13 @@ packages:
       optionator: 0.8.3
     optionalDependencies:
       source-map: 0.6.1
+    dev: true
+
+  /eslint-config-prettier/8.5.0:
+    resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
     dev: true
 
   /eslint-config-react-app/7.0.1_k4hulit6q32f6bf3s2zr2n46lu:

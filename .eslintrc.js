@@ -4,6 +4,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'react-app',
     'react-app/jest',
+    'prettier', // Turns off all rules that are unnecessary or might conflict with Prettier
   ],
   rules: {
     // For testing purpose, we should not access 'window' object directly
