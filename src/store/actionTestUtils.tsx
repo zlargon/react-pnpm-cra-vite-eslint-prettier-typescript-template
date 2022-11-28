@@ -63,10 +63,10 @@ interface IRenderTestStore<IState> {
     useDispatch: () => Dispatch<(state: IState) => void>;
   };
   actions: ((state: IState) => void)[];
-  actionsWithParams: ((...params: any[]) => (state: IState) => void)[];
+  actionsWithParams: ((...params: any[]) => (state: IState) => void)[]; // eslint-disable-line @typescript-eslint/no-explicit-any
   asyncActions: ((dispatch: Dispatch<(state: IState) => void>) => Promise<void>)[];
   asyncActionsWithParams: ((
-    ...params: any[]
+    ...params: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   ) => (dispatch: Dispatch<(state: IState) => void>) => Promise<void>)[];
 }
 
@@ -103,7 +103,7 @@ export const renderTestStore = <IState, IActionName extends string>({
     ) => {
       return waitFor(() => {
         const state = screen.getByTestId('state');
-        callback(JSON.parse(state.textContent!));
+        callback(JSON.parse(state.textContent!)); // eslint-disable-line @typescript-eslint/no-non-null-assertion
       }, options);
     },
   };
