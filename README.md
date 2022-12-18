@@ -1,4 +1,4 @@
-# React App Starter
+# react-pnpm-cra-vite-eslint-prettier-typescript-template
 
 a template for building a react app
 
