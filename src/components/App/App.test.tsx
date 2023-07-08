@@ -6,6 +6,12 @@ import App from './App';
 jest.mock('apis/apis');
 const MockAPI = API as jest.Mocked<typeof API>;
 
+// mock console
+/* eslint-disable no-console */
+jest.spyOn(console, 'log').mockImplementation(jest.fn());
+jest.spyOn(console, 'group').mockImplementation(jest.fn());
+jest.spyOn(console, 'groupEnd').mockImplementation(jest.fn());
+
 const expectCounterToBe = async (value: number) => {
   const counterElement = await screen.findByTestId('counter');
   expect(counterElement).toHaveTextContent(String(value));
