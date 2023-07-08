@@ -4,12 +4,14 @@ specifiers:
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0
   '@testing-library/user-event': 13.5.0
+  '@types/diff': 5.0.3
   '@types/jest': 27.5.2
   '@types/node': 16.18.3
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
   '@types/testing-library__jest-dom': 5.14.5
   '@vitejs/plugin-react': 2.2.0
+  diff: 5.1.0
   eslint-config-prettier: 8.5.0
   immer: 9.0.16
   prettier: 2.8.0
@@ -23,6 +25,7 @@ specifiers:
   vite-tsconfig-paths: 3.6.0
 
 dependencies:
+  diff: 5.1.0
   immer: 9.0.16
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -32,6 +35,7 @@ devDependencies:
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 13.5.0
+  '@types/diff': 5.0.3
   '@types/jest': 27.5.2
   '@types/node': 16.18.3
   '@types/react': 18.0.25
@@ -2376,6 +2380,10 @@ packages:
       '@types/node': 18.11.9
     dev: true
 
+  /@types/diff/5.0.3:
+    resolution: {integrity: sha512-amrLbRqTU9bXMCc6uX0sWpxsQzRIo9z6MJPkH1pkez/qOxuqSZVuryJAWoBRq94CeG8JxY+VK4Le9HtjQR5T9A==}
+    dev: true
+
   /@types/eslint-scope/3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
@@ -4229,6 +4237,11 @@ packages:
     resolution: {integrity: sha512-hlM3QR272NXCi4pq+N4Kok4kOp6EsgOM3ZSpJI7Da3UAs+Ttsi8MRmB6trM/lhyzUxGfOgnpkHtgqm5Q/CTcfQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dev: true
+
+  /diff/5.1.0:
+    resolution: {integrity: sha512-D+mk+qE8VC/PAUrlAU34N+VfXev0ghe5ywmpqrawphmVZc1bEfn56uo9qpyGp1p4xpzOHkSW4ztBd6L7Xx4ACw==}
+    engines: {node: '>=0.3.1'}
+    dev: false
 
   /dir-glob/3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
