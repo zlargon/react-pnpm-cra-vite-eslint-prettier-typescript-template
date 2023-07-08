@@ -1,5 +1,5 @@
 import type { IAsyncAction } from 'store/store';
-import { delay } from 'utils/delay';
+import * as API from 'apis/apis';
 
 export const user_click_delay_decrement_button: IAsyncAction = async (dispatch) => {
   dispatch(function before_decreasing_counter(s) {
@@ -7,7 +7,7 @@ export const user_click_delay_decrement_button: IAsyncAction = async (dispatch) 
   });
 
   try {
-    await delay(500);
+    await API.decreaseCounter();
 
     dispatch(function after_decreasing_counter_success(s) {
       s.counter--;

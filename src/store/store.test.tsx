@@ -34,3 +34,18 @@ test('actions', async () => {
   ]);
   expect(state.counter).toBe(10);
 });
+
+test('API failure', async () => {
+  MockAPI.decreaseCounter.mockRejectedValue(new Error('Network Error'));
+
+  let state = await testDispatchAsyncActions(initialState, [
+    initialize_application,
+    user_click_delay_decrement_button,
+  ]);
+  expect(state.counter).toBe(10); // API error and don't change the counter
+
+  state = await testDispatchAsyncActions(state, [
+    user_click_delay_decrement_button_with_number(10),
+  ]);
+  expect(state.counter).toBe(10); // API error and don't change the counter
+});
