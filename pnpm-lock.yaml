@@ -13,7 +13,7 @@ specifiers:
   '@vitejs/plugin-react': 2.2.0
   diff: 5.1.0
   eslint-config-prettier: 8.8.0
-  immer: 9.0.16
+  immer: 10.0.2
   prettier: 3.0.0
   react: 18.2.0
   react-dom: 18.2.0
@@ -26,7 +26,7 @@ specifiers:
 
 dependencies:
   diff: 5.1.0
-  immer: 9.0.16
+  immer: 10.0.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   use-context-selector: 1.4.1_biqbaboplfbrettd7655fr4n2y
@@ -5850,8 +5850,13 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  /immer/10.0.2:
+    resolution: {integrity: sha512-Rx3CqeqQ19sxUtYV9CU911Vhy8/721wRFnJv3REVGWUmoAcIwzifTsdmJte/MV+0/XpM35LZdQMBGkRIoLPwQA==}
+    dev: false
+
   /immer/9.0.16:
     resolution: {integrity: sha512-qenGE7CstVm1NrHQbMh8YaSzTZTFNP3zPqr3YU0S0UY441j4bJTg4A2Hh5KAhwgaiU6ZZ1Ar6y/2f4TblnMReQ==}
+    dev: true
 
   /immutable/4.1.0:
     resolution: {integrity: sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==}
