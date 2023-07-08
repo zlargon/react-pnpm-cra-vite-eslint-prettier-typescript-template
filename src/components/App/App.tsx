@@ -44,6 +44,7 @@ function Counter() {
 
 function Buttons() {
   const dispatch = Store.useDispatch();
+  const dispatchAsyncAction = Store.useDispatchAsyncAction();
   return (
     <>
       {/* 1. action without parameter */}
@@ -65,7 +66,7 @@ function Buttons() {
       {/* 3. async action without parameter */}
       <button
         data-testid="decrement-btn-1"
-        onClick={() => user_click_delay_decrement_button(dispatch)}
+        onClick={() => dispatchAsyncAction(user_click_delay_decrement_button)}
       >
         -1
       </button>
@@ -73,7 +74,7 @@ function Buttons() {
       {/* 4. async action with parameter */}
       <button
         data-testid="decrement-btn-2"
-        onClick={() => user_click_delay_decrement_button_with_number(3)(dispatch)}
+        onClick={() => dispatchAsyncAction(user_click_delay_decrement_button_with_number(3))}
       >
         -3
       </button>

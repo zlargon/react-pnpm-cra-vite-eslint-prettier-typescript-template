@@ -4,10 +4,10 @@ import { initialize_application } from 'store/asyncActions/initialize_applicatio
 
 export const useInitializeApplication = () => {
   const isApplicationInitializing = Store.useSelector((s) => s.isInitializing);
-  const dispatch = Store.useDispatch();
+  const dispatchAsyncAction = Store.useDispatchAsyncAction();
   useEffect(() => {
-    initialize_application(dispatch);
-  }, [dispatch]);
+    dispatchAsyncAction(initialize_application);
+  }, [dispatchAsyncAction]);
 
   return isApplicationInitializing;
 };
