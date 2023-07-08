@@ -18,7 +18,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-scripts: 5.0.1
-  sass: 1.56.1
+  sass: 1.63.6
   typescript: 4.9.5
   use-context-selector: 1.4.1
   vite: 3.2.4
@@ -44,10 +44,10 @@ devDependencies:
   '@vitejs/plugin-react': 2.2.0_vite@3.2.4
   eslint-config-prettier: 8.8.0
   prettier: 3.0.0
-  react-scripts: 5.0.1_hmioiketi6w3b73ggucwtboa2e
-  sass: 1.56.1
+  react-scripts: 5.0.1_hx6zouqctmuakojyqujdruxhvq
+  sass: 1.63.6
   typescript: 4.9.5
-  vite: 3.2.4_ine3jvitqo2wd63xsapbvgdjva
+  vite: 3.2.4_xrjy4vtv4xlxyxmjw6jffiovpq
   vite-tsconfig-paths: 3.6.0_vite@3.2.4
 
 packages:
@@ -2759,7 +2759,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.20.2
       magic-string: 0.26.7
       react-refresh: 0.14.0
-      vite: 3.2.4_ine3jvitqo2wd63xsapbvgdjva
+      vite: 3.2.4_xrjy4vtv4xlxyxmjw6jffiovpq
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3180,7 +3180,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001434
+      caniuse-lite: 1.0.30001513
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -3464,7 +3464,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001434
+      caniuse-lite: 1.0.30001513
       electron-to-chromium: 1.4.284
       node-releases: 2.0.6
       update-browserslist-db: 1.0.10_browserslist@4.21.4
@@ -3533,13 +3533,13 @@ packages:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001434
+      caniuse-lite: 1.0.30001513
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: true
 
-  /caniuse-lite/1.0.30001434:
-    resolution: {integrity: sha512-aOBHrLmTQw//WFa2rcF1If9fa3ypkC1wzqqiKHgfdrXTWcU8C4gKVZT77eQAPWN1APys3+uQ0Df07rKauXGEYA==}
+  /caniuse-lite/1.0.30001513:
+    resolution: {integrity: sha512-pnjGJo7SOOjAGytZZ203Em95MRM8Cr6jhCXNF/FAXTpCTRTECnqQWLpiTRqrFtdYcth8hf4WECUpkezuYsMVww==}
     dev: true
 
   /case-sensitive-paths-webpack-plugin/2.4.0:
@@ -8636,7 +8636,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /react-scripts/5.0.1_hmioiketi6w3b73ggucwtboa2e:
+  /react-scripts/5.0.1_hx6zouqctmuakojyqujdruxhvq:
     resolution: {integrity: sha512-8VAmEm/ZAwQzJ+GOMLbBsTdDKOpuZh7RPs0UymvBR2vRk4iZWCskjbFnxqjrzoIvlNNRZ3QJFx6/qDSi6zSnaQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -8685,7 +8685,7 @@ packages:
       react-refresh: 0.11.0
       resolve: 1.22.1
       resolve-url-loader: 4.0.0
-      sass-loader: 12.6.0_sass@1.56.1+webpack@5.75.0
+      sass-loader: 12.6.0_sass@1.63.6+webpack@5.75.0
       semver: 7.3.8
       source-map-loader: 3.0.2_webpack@5.75.0
       style-loader: 3.3.1_webpack@5.75.0
@@ -9014,7 +9014,7 @@ packages:
     resolution: {integrity: sha512-ZRwKbh/eQ6w9vmTjkuG0Ioi3HBwPFce0O+v//ve+aOq1oeCy7jMV2qzzAlpsNuqpqCBjjriM1lbtZbF/Q8jVyA==}
     dev: true
 
-  /sass-loader/12.6.0_sass@1.56.1+webpack@5.75.0:
+  /sass-loader/12.6.0_sass@1.63.6+webpack@5.75.0:
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -9035,13 +9035,13 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      sass: 1.56.1
+      sass: 1.63.6
       webpack: 5.75.0
     dev: true
 
-  /sass/1.56.1:
-    resolution: {integrity: sha512-VpEyKpyBPCxE7qGDtOcdJ6fFbcpOM+Emu7uZLxVrkX8KVU/Dp5UF7WLvzqRuUhB6mqqQt1xffLoG+AndxTZrCQ==}
-    engines: {node: '>=12.0.0'}
+  /sass/1.63.6:
+    resolution: {integrity: sha512-MJuxGMHzaOW7ipp+1KdELtqKbfAWbH7OLIdoSMnVe3EXPMTmxTmlaZDCTsgIpPCs3w99lLo9/zDKkOrJuT5byw==}
+    engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
@@ -10014,12 +10014,12 @@ packages:
       globrex: 0.1.2
       recrawl-sync: 2.2.3
       tsconfig-paths: 4.1.0
-      vite: 3.2.4_ine3jvitqo2wd63xsapbvgdjva
+      vite: 3.2.4_xrjy4vtv4xlxyxmjw6jffiovpq
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite/3.2.4_ine3jvitqo2wd63xsapbvgdjva:
+  /vite/3.2.4_xrjy4vtv4xlxyxmjw6jffiovpq:
     resolution: {integrity: sha512-Z2X6SRAffOUYTa+sLy3NQ7nlHFU100xwanq1WDwqaiFiCe+25zdxP1TfCS5ojPV2oDDcXudHIoPnI1Z/66B7Yw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -10049,7 +10049,7 @@ packages:
       postcss: 8.4.19
       resolve: 1.22.1
       rollup: 2.79.1
-      sass: 1.56.1
+      sass: 1.63.6
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
