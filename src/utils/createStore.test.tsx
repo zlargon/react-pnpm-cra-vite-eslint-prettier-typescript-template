@@ -1,15 +1,15 @@
-import type { Dispatch } from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+import { render, waitFor, screen } from '@testing-library/react';
 import User from '@testing-library/user-event';
-import { createStore, debugStore } from './createStore';
+import { createStore } from './createStore';
 import { delay } from './delay';
+
+const REACT_MAJOR_VERSION = parseInt(React.version.split('.')[0]);
 
 // mock console
 /* eslint-disable no-console */
-const groupCollapsedSpy = jest.spyOn(console, 'groupCollapsed').mockImplementation(jest.fn());
 const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(jest.fn());
-jest.spyOn(console, 'groupEnd').mockImplementation(jest.fn());
-jest.spyOn(console, 'log').mockImplementation(jest.fn());
 
 // Records of the component rendering times
 const renderTimes = {
@@ -21,10 +21,13 @@ const renderTimes = {
 // State & Types & Store
 // =============================================================================
 const initialState = { count: 0 };
-type IState = typeof initialState;
-type IAction = (state: IState) => void;
-type IAsyncAction = (dispatch: Dispatch<IAction>) => Promise<void>;
-const Store = createStore<IState>(initialState);
+const onStateChangeSpy = jest.fn();
+const Store = createStore({
+  initialState,
+  onStateChange: onStateChangeSpy,
+});
+type IAction = typeof Store.infer.Action;
+type IAsyncAction = typeof Store.infer.AsyncAction;
 
 // =============================================================================
 // Actions (3)
@@ -72,8 +75,20 @@ const increase_number_later_with_action_name = (num: number): IAsyncAction => as
 // =============================================================================
 // Component
 // =============================================================================
+
+// Button Component
+const Button = ({
+  text,
+  onClick,
+}: {
+  text: string;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}): JSX.Element => {
+  return <button onClick={onClick}>{text}</button>;
+};
+
 // Counter Component
-const Counter: React.FC = () => {
+const Counter = (): JSX.Element => {
   renderTimes.counter++; // update the render times
 
   const count = Store.useSelector((s) => s.count);
@@ -81,52 +96,39 @@ const Counter: React.FC = () => {
 };
 
 // App Component
-const App: React.FC = () => {
+const App = (): JSX.Element => {
   renderTimes.app++; // update the render times
 
   const dispatch = Store.useDispatch();
+  const dispatchAsyncAction = Store.useDispatchAsyncAction();
   return (
     <div>
       <Counter />
-      {/* +1 */}
-      <button onClick={() => dispatch(increase_1)}>+1</button>
-
-      {/* +2 */}
-      <button onClick={() => dispatch(increase_number(2))}>+2</button>
-
-      {/* +3 */}
-      <button onClick={() => dispatch(increase_number_with_action_name(3))}>+3</button>
-
-      {/* +4 */}
-      <button
+      <Button text="+1" onClick={() => dispatch(increase_1)} />
+      <Button text="+2" onClick={() => dispatch(increase_number(2))} />
+      <Button text="+3" onClick={() => dispatch(increase_number_with_action_name(3))} />
+      <Button
+        text="+4"
         onClick={() =>
           dispatch((s) => {
             s.count += 4;
           })
         }
-      >
-        +4
-      </button>
-
-      {/* +5 */}
-      <button
+      />
+      <Button
+        text="+5"
         onClick={() => {
           dispatch(function increase_5(s) {
             s.count += 5;
           });
         }}
-      >
-        +5
-      </button>
-
-      {/* +6 after 500ms */}
-      <button onClick={() => increase_6_later(dispatch)}>+6</button>
-
-      {/* +7 after 500ms */}
-      <button onClick={() => increase_number_later(7)(dispatch)}>+7</button>
-
-      {/* +8 after 500ms */}
-      <button onClick={() => increase_number_later_with_action_name(8)(dispatch)}>+8</button>
+      />
+      <Button text="+6 after 500ms" onClick={() => dispatchAsyncAction(increase_6_later)} />
+      <Button text="+7 after 500ms" onClick={() => dispatchAsyncAction(increase_number_later(7))} />
+      <Button
+        text="+8 after 500ms"
+        onClick={() => dispatchAsyncAction(increase_number_later_with_action_name(8))}
+      />
     </div>
   );
 };
@@ -152,9 +154,19 @@ test('createStore', async () => {
   };
 
   // performance testing: should not render whole react app
-  const expectCounterRenderTimesToBe = (times: number): void => {
-    expect(renderTimes.app).toBe(1); // app component should never re-render
-    expect(renderTimes.counter).toBe(times);
+  const expectCounterTimesToBe = (times: number): void => {
+    /* eslint-disable jest/no-conditional-expect */
+    if (REACT_MAJOR_VERSION >= 18) {
+      expect(renderTimes.app).toBeLessThanOrEqual(2); // react 18 will render twice initially
+
+      // Skip the testing of the rendering time for the counter component as React 18 has introduced "automatic batching"
+      // to optimize rendering times. This means that the component's rendering time may not be predictable during testing.
+      // https://reactjs.org/blog/2022/03/29/react-v18.html#new-feature-automatic-batching
+      // https://github.com/reactwg/react-18/discussions/21
+    } else {
+      expect(renderTimes.app).toBe(1); // app component should never re-render
+      expect(renderTimes.counter).toBe(times);
+    }
   };
 
   // check the missing action name
@@ -168,73 +180,101 @@ test('createStore', async () => {
   };
 
   // debug message should show correct action name
-  const expectDebugActionNameToBe = (actionName: string): void => {
-    expect(console.groupCollapsed).toBeCalledTimes(1);
-    expect(console.groupCollapsed).toHaveBeenLastCalledWith(`Action: ${actionName}`);
-    groupCollapsedSpy.mockClear();
+  const expectActionNameToBe = (actionName: string): void => {
+    const actualActionName = onStateChangeSpy.mock.calls.at(-1)[0].actionName;
+    expect(actualActionName).toBe(actionName);
   };
 
   // initial app component
   expectCounterNumberToBe(0);
-  expectCounterRenderTimesToBe(2);
-  expect(console.groupCollapsed).toBeCalledTimes(0);
+  expectCounterTimesToBe(1);
 
   // pre-defined action without arguments
   clickButton('+1');
   expectCounterNumberToBe(1);
-  expectCounterRenderTimesToBe(3);
-  expect(console.groupCollapsed).toBeCalledTimes(0);
+  expectCounterTimesToBe(2);
+  expectActionNameToBe('increase_1');
   expectToShowActionWarning(0);
 
   // pre-defined action with arguments but no action name
   clickButton('+2');
   expectCounterNumberToBe(3);
-  expectCounterRenderTimesToBe(4);
-  expect(console.groupCollapsed).toBeCalledTimes(0);
+  expectCounterTimesToBe(3);
+  expectActionNameToBe('');
   expectToShowActionWarning(1);
-
-  // enable debug
-  debugStore(true);
 
   // pre-defined action with arguments and has action name
   clickButton('+3');
   expectCounterNumberToBe(6);
-  expectCounterRenderTimesToBe(5);
-  expectDebugActionNameToBe('increase_number');
+  expectCounterTimesToBe(4);
+  expectActionNameToBe('increase_number');
   expectToShowActionWarning(0);
 
   // immediate anonymous action
   clickButton('+4');
   expectCounterNumberToBe(10);
-  expectCounterRenderTimesToBe(6);
-  expectDebugActionNameToBe('(anonymous)');
+  expectCounterTimesToBe(5);
+  expectActionNameToBe('');
   expectToShowActionWarning(1);
 
   // immediate action with action name
   clickButton('+5');
   expectCounterNumberToBe(15);
-  expectCounterRenderTimesToBe(7);
-  expectDebugActionNameToBe('increase_5');
+  expectCounterTimesToBe(6);
+  expectActionNameToBe('increase_5');
   expectToShowActionWarning(0);
 
   // async action without arguments
-  clickButton('+6');
-  await waitFor(() => expectCounterNumberToBe(21));
-  expectCounterRenderTimesToBe(8);
-  expectDebugActionNameToBe('increase_6');
-  expectToShowActionWarning(0);
+  clickButton('+6 after 500ms');
+  await waitFor(() => {
+    expectCounterNumberToBe(21);
+    expectCounterTimesToBe(7);
+    expectActionNameToBe('increase_6');
+    expectToShowActionWarning(0);
+  });
 
   // async action with arguments but no action name
-  clickButton('+7');
-  await waitFor(() => expectCounterNumberToBe(28));
-  expectCounterRenderTimesToBe(9);
-  expectDebugActionNameToBe('(anonymous)');
-  expectToShowActionWarning(1);
+  clickButton('+7 after 500ms');
+  await waitFor(() => {
+    expectCounterNumberToBe(28);
+    expectCounterTimesToBe(8);
+    expectActionNameToBe('');
+    expectToShowActionWarning(1);
+  });
 
   // async action with arguments and has action name
-  clickButton('+8');
-  await waitFor(() => expectCounterNumberToBe(36));
-  expectCounterRenderTimesToBe(10);
-  expectDebugActionNameToBe('increase_number');
-  expectToShowActionWarning(0);
+  clickButton('+8 after 500ms');
+  await waitFor(() => {
+    expectCounterNumberToBe(36);
+    expectCounterTimesToBe(9);
+    expectActionNameToBe('increase_number');
+    expectToShowActionWarning(0);
+  });
+});
+
+// =============================================================================
+// Test Actions and Async Actions
+// =============================================================================
+test('actions and async actions', async () => {
+  const { testDispatchActions, testDispatchAsyncActions } = Store.testUtils;
+
+  // init state
+  let state = initialState;
+  expect(state.count).toEqual(0);
+
+  // dispatch actions
+  state = testDispatchActions(state, [
+    increase_1,
+    increase_number(3),
+    increase_number_with_action_name(5),
+  ]);
+  expect(state.count).toEqual(9);
+
+  // dispatch async actions
+  state = await testDispatchAsyncActions(state, [
+    increase_6_later,
+    increase_number_later(10),
+    increase_number_later_with_action_name(10),
+  ]);
+  expect(state.count).toEqual(35);
 });

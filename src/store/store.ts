@@ -1,4 +1,3 @@
-import type { Dispatch } from 'react';
 import { createStore } from 'utils/createStore';
 
 // initial state
@@ -8,10 +7,9 @@ export const initialState = {
   counter: 0,
 };
 
-// types
-export type IState = typeof initialState;
-export type IAction = (state: IState) => void;
-export type IAsyncAction = (dispatch: Dispatch<IAction>) => Promise<void>;
-
 // store
-export const Store = createStore<IState>(initialState);
+export const Store = createStore({ initialState });
+
+// types
+export type IAction = typeof Store.infer.Action;
+export type IAsyncAction = typeof Store.infer.AsyncAction;
